@@ -1,0 +1,42 @@
+{% extends 'newsapp/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main_contain %}
+<section class="container">
+    <div class="row justify-content-around mt-5">
+        <div class="col-md-5">
+            <div class="text-center">
+            <img class = "img-fluid w-25" src="{% static 'newsapp/images/log-in.png' %}">
+            </div>
+        </div>
+     </div>
+        <div class="row justify-content-around">
+            <div class="col-md-5">
+            <form id="login-form" action="" method="post" class=" p-3 my-4  ">
+                {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>{{message}}</strong>
+                      <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                   </div>
+                {% endfor %}
+                {% endif %}
+                {% for fm in form %}
+                {{fm.label_tag}}
+                {{fm}}
+                <p></p>
+                <small class="text-danger">{{fm.errors | striptags }}</small>
+                <div></div>
+                {% endfor %}
+                 <input type="submit" value="Login" class="btn btn-dark mt-1">
+            </form>
+            </div>
+        </div>
+
+</section>
+
+
+{% endblock main_contain %}

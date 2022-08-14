@@ -1,0 +1,47 @@
+{% extends 'newsapp/base.html' %}
+{% load static %}
+{% block title %}News{% endblock title %}
+{% block main_contain %}
+
+<div class=" container">
+  <div class="row">
+    <div class="col-md-6">
+        <div class="col-md-6">
+        <form action="" method="get">
+
+            <div class="row my-3">
+              <h6 class="text-dark " for="country">Welcome to the world of News</h6>
+              <input name="country" type="text" class="form-control" id="country"  placeholder="Enter the Country" required>
+                <button type="submit" class="btn btn-success my-2">Search</button>
+            </div>
+
+
+
+        </form>
+
+     </div>
+      {% for i in articles %}
+
+      <div class="card rounded shadow-lg m-2 " style="max-width: 95%;">
+            <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.title}}</h5>
+              <p class="card-text">{{i.description}}</p>
+              <hr>
+              <small>data : {{i.publishedAt}}</small>&nbsp;
+              <a target="_blank" href="{{i.url}}" class="btn btn-dark m-1">See News</a>
+
+            </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock main_contain %}

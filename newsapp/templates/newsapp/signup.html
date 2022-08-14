@@ -1,0 +1,40 @@
+{% extends 'newsapp/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block main_contain %}
+<div class="container">
+    <div class="row justify-content-around my-3">
+       <div class="text-center">
+            <img class = "img-fluid w-25" src="{% static 'newsapp/images/signup.png' %}">
+            </div>
+
+    </div>
+    <div class="row my-3 justify-content-around">
+        <div class="col-sm-6">
+            <form action="" method='post' class=" p-4 rounded ">
+                {% if messages %}
+                  {% for message in messages %}
+                   <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>{{message}}</strong>
+                      <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                   </div>
+                   {% endfor %}
+                {% endif %}
+                {% csrf_token %}
+                {% for fm in form%}
+                  {{ fm.label_tag }}
+                  {{fm}}
+                <small class="text-danger">{{fm.errors | striptags }}</small>
+                <div></div>
+                {% endfor %}
+                <input type="submit" value="Submit" class=" btn btn-dark my-3">
+            </form>
+        </div>
+</div>
+</div>
+
+
+{% endblock main_contain %}
